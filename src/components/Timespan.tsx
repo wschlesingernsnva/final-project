@@ -10,44 +10,6 @@ class TimespanDate {
 	year?: string;
 }
 
-// TEMP
-//
-// interface timespanElemProps {
-// 	key?: number;
-// }
-//
-// const TimespanElem: FC<timespanElemProps> = ({key}) => {
-// 	return (
-// 		<HStack>
-// 			<DateSelector
-// 				monthCallback={(month: ChangeEvent<HTMLSelectElement>) => {
-// 					this.startDate.month = month.target.value;
-// 					console.log("month change to " + this.startDate.month);
-// 				}}
-// 				dayCallback={(day: string) => {
-// 					this.startDate.day = day;
-// 					console.log("day change to " + this.startDate.day);
-// 				}}
-// 				yearCallback={(year: string) => {
-// 					this.startDate.year = year;
-// 				}}
-// 			/>
-// 			<span>&#10230;</span>
-// 			<DateSelector
-// 				monthCallback={(month: ChangeEvent<HTMLSelectElement>) => {
-// 					this.endDate.month = month.target.value;
-// 				}}
-// 				dayCallback={(day: string) => {
-// 					this.endDate.day = day;
-// 				}}
-// 				yearCallback={(year: string) => {
-// 					this.endDate.year = year;
-// 				}}
-// 			/>
-// 		</HStack>
-// 	);
-// };
-
 type monthCB = (month: ChangeEvent<HTMLSelectElement>) => void;
 type dayCB = (day: string) => void;
 type yearCB = (year: string) => void;
