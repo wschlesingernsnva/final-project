@@ -30,7 +30,7 @@ const monthOptions: React.JSX.Element[] = [];
 for (let monthIndex in months) {
 	let month: string = months[monthIndex];
 	monthOptions.push(
-		<option key={monthIndex} value={month}>
+		<option key={monthIndex} value={monthIndex}>
 			{month}
 		</option>
 	);
@@ -47,11 +47,10 @@ const DateNumField: FC = () => (
 );
 
 const MonthSelect: FC<SelectProps> = (props: SelectProps) => {
-	let date: Date = new Date();
 	return (
 		<Select
 			maxW={36}
-			defaultValue={months.at(date.getMonth())}
+			defaultValue={props.defaultValue}
 			onChange={props.onChange}
 		>
 			{monthOptions}
@@ -60,10 +59,9 @@ const MonthSelect: FC<SelectProps> = (props: SelectProps) => {
 };
 
 const DaySelect: FC<NumberInputProps> = (props: NumberInputProps) => {
-	let date: Date = new Date();
 	return (
 		<NumberInput
-			defaultValue={date.getDate()}
+			defaultValue={props.defaultValue}
 			min={1}
 			max={31}
 			step={1}
@@ -77,10 +75,9 @@ const DaySelect: FC<NumberInputProps> = (props: NumberInputProps) => {
 };
 
 const YearSelect: FC<NumberInputProps> = (props: NumberInputProps) => {
-	let date: Date = new Date();
 	return (
 		<NumberInput
-			defaultValue={date.getFullYear()}
+			defaultValue={props.defaultValue}
 			min={1}
 			step={1}
 			precision={0}
@@ -92,18 +89,38 @@ const YearSelect: FC<NumberInputProps> = (props: NumberInputProps) => {
 	);
 };
 
+export interface DateObj {
+	month: number;
+	day: number;
+	year: number;
+}
+
+export type monthCB = ChangeEventHandler<HTMLSelectElement>;
+export type dayCB = (day: string) => void;
+export type yearCB = (year: string) => void;
+
 interface DateSelectorProps {
-	monthCallback: ChangeEventHandler<HTMLSelectElement>;
-	dayCallback: (day: string) => void;
-	yearCallback: (year: string) => void;
+	defaultDate: DateObj;
+	monthCallback: monthCB;
+	dayCallback: dayCB;
+	yearCallback: yearCB;
 }
 
 const DateSelector: FC<DateSelectorProps> = (props: DateSelectorProps) => {
 	return (
 		<HStack>
-			<MonthSelect onChange={props.monthCallback} />
-			<DaySelect onChange={props.dayCallback} />
-			<YearSelect onChange={props.yearCallback} />
+			<MonthSelect
+				onChange={props.monthCallback}
+				defaultValue={props.defaultDate.month}
+			/>
+			<DaySelect
+				onChange={props.dayCallback}
+				defaultValue={props.defaultDate.day}
+			/>
+			<YearSelect
+				onChange={props.yearCallback}
+				defaultValue={props.defaultDate.year}
+			/>
 		</HStack>
 	);
 };
