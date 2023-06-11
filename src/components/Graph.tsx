@@ -1,5 +1,7 @@
 import React, { FC } from "react";
 
+import { Box } from "@chakra-ui/react";
+
 import { ChartData } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
@@ -25,7 +27,7 @@ const Graph: FC<GraphProps> = (props: GraphProps) => {
 				type: "time" as const,
 				time: {
 					displayFormat: { day: "MM/YY" },
-					tooltipFormat: "DD/MM/YY",
+					tooltipFormat: "MM/YY",
 					unit: "day" as const,
 				},
 				min: props.min,
@@ -41,7 +43,18 @@ const Graph: FC<GraphProps> = (props: GraphProps) => {
 			},
 		],
 	};
-	return <Bar className="graph" options={options} data={data} />;
+	return (
+		<Box
+			borderWidth={1}
+			borderRadius="var(--chakra-radii-md)"
+			margin={4}
+			padding={8}
+			alignItems="flex-start"
+			justifyContent="flex-start"
+		>
+			<Bar options={options} data={data} />
+		</Box>
+	);
 };
 
 export default Graph;

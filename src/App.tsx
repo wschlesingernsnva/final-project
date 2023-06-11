@@ -19,7 +19,7 @@ function App() {
 		dt.plus({ years: 1 }).toISO()!
 	);
 	const [data, setData] = useState<string[][]>([]);
-	const [labels, setLabels] = useState<string[]>([]);
+	const [labels, setLabels] = useState<string[]>(["", ""]);
 
 	// TEMP NOTE: need to force startDate to be smaller than endDate
 

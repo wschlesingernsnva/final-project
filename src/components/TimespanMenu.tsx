@@ -4,11 +4,7 @@ import { VStack } from "@chakra-ui/react";
 
 import Timespan from "./Timespan";
 
-export const timespans: Timespan[] = [
-	new Timespan(0),
-	new Timespan(1),
-	new Timespan(2),
-];
+export const timespans: Timespan[] = [new Timespan(0), new Timespan(1)];
 
 const TimespanMenu = () => {
 	const timespanElems = [];
