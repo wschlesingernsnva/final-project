@@ -1,81 +1,39 @@
-import React, { ChangeEvent, FC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 
 import { HStack } from "@chakra-ui/react";
 
-import DateSelector, { DateObj, dayCB, monthCB, yearCB } from "./DateSelector";
+import DateSelector from "./DateSelector";
 
-interface timespanElemProps {
-	defaultDate: DateObj;
-
-	monthCBStart: monthCB;
-	dayCBStart: dayCB;
-	yearCBStart: yearCB;
-
-	monthCBEnd: monthCB;
-	dayCBEnd: dayCB;
-	yearCBEnd: yearCB;
+interface TimespanElemProps {
+	start: ReactNode;
+	end: ReactNode;
 }
 
-const TimespanElem: FC<timespanElemProps> = (props: timespanElemProps) => {
+const TimespanElem: FC<TimespanElemProps> = (props: TimespanElemProps) => {
 	return (
 		<HStack>
-			<DateSelector
-				defaultDate={props.defaultDate}
-				monthCallback={props.monthCBStart}
-				dayCallback={props.dayCBStart}
-				yearCallback={props.yearCBStart}
-			/>
+			{props.start}
 			<span>&#10230;</span>
-			<DateSelector
-				defaultDate={props.defaultDate}
-				monthCallback={props.monthCBEnd}
-				dayCallback={props.dayCBEnd}
-				yearCallback={props.yearCBEnd}
-			/>
+			{props.end}
 		</HStack>
 	);
 };
 
 class Timespan {
-	public startDate: DateObj;
-	public endDate: DateObj;
+	public startDate: DateSelector;
+	public endDate: DateSelector;
 
 	public elem: ReactNode;
 
 	public constructor(key: number) {
-		const date: Date = new Date();
-
-		const defaultDate = {
-			month: date.getMonth(),
-			day: date.getDate(),
-			year: date.getFullYear(),
-		};
-
-		this.startDate = defaultDate;
-		this.endDate = defaultDate;
+		this.startDate = new DateSelector();
+		this.endDate = new DateSelector();
 
 		this.elem = (
 			<TimespanElem
 				key={key}
-				defaultDate={defaultDate}
-				monthCBStart={(event: ChangeEvent<HTMLSelectElement>) => {
-					this.startDate.month = +event.target.value;
-				}}
-				dayCBStart={(day: string) => {
-					this.startDate.day = +day;
-				}}
-				yearCBStart={(year: string) => {
-					this.startDate.year = +year;
-				}}
-				monthCBEnd={(event: ChangeEvent<HTMLSelectElement>) => {
-					this.endDate.month = +event.target.value;
-				}}
-				dayCBEnd={(day: string) => {
-					this.endDate.day = +day;
-				}}
-				yearCBEnd={(year: string) => {
-					this.endDate.year = +year;
-				}}
+				start={this.startDate.elem}
+				end={this.endDate.elem}
 			/>
 		);
 	}
