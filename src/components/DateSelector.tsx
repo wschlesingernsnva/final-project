@@ -11,6 +11,8 @@ import {
 	NumberInputProps,
 } from "@chakra-ui/react";
 
+import { updateGraph } from "src/App";
+
 interface Month {
 	name: string;
 	days?: number;
@@ -207,12 +209,15 @@ class DateSelector {
 				callbacks={{
 					month: (month: number) => {
 						this.date.month = month;
+						updateGraph();
 					},
 					day: (day: number) => {
 						this.date.day = day;
+						updateGraph();
 					},
 					year: (year: number) => {
 						this.date.year = year;
+						updateGraph();
 					},
 				}}
 				defaultDate={this.date}
