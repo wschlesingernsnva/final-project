@@ -19,18 +19,16 @@ function App() {
 		dt.plus({ years: 1 }).toISO()!
 	);
 	const [data, setData] = useState<string[][]>([]);
+	const [labels, setLabels] = useState<string[]>([]);
 
-	// TEMP
-	// setInterval(() => {
-	// 	setDateMin(dateMin);
-	// 	setDateMax(dateMax);
-	// }, 5000);
+	// TEMP NOTE: need to force startDate to be smaller than endDate
 
-	// TEMP NOTE: need to force startDate to be smaller than endDate later
+	// TEMP NOTE: need to not attempt to update graph when input is invalid
 
 	const updateGraphInternal = () => {
 		// TEMP NOTE: currently dates are stored as DateObj. they should be converted to luxon DateTime objects later
 
+		const newLabels: string[] = [];
 		const newData: string[][] = [];
 
 		let initStartDateObj: DateObj = Object.assign(
@@ -65,6 +63,7 @@ function App() {
 			const thisStartDate: DateTime = DateTime.fromObject(thisStartDateObj);
 			const thisEndDate: DateTime = DateTime.fromObject(thisEndDateObj);
 
+			newLabels.push(thisTimespan.label);
 			newData.push([thisStartDate.toISO()!, thisEndDate.toISO()!]);
 
 			// Don't need to compare first object to anything for maxes/mins
@@ -80,6 +79,7 @@ function App() {
 			}
 		}
 
+		setLabels(newLabels);
 		setData(newData);
 
 		setDateMin(min.toISO()!);
@@ -94,7 +94,7 @@ function App() {
 	return (
 		<ChakraProvider>
 			<TimespanMenu />
-			<Graph min={dateMin} max={dateMax} data={data} />
+			<Graph min={dateMin} max={dateMax} data={data} labels={labels} />
 		</ChakraProvider>
 	);
 }

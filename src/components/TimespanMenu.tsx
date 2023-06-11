@@ -10,14 +10,6 @@ export const timespans: Timespan[] = [
 	new Timespan(2),
 ];
 
-// TEMP
-// interface TimespanMenuProps {
-// 	updateGraph: () => void;
-// }
-
-// TEMP
-// const TimespanMenu: FC<TimespanMenuProps> = (props: TimespanMenuProps) => {
-
 const TimespanMenu = () => {
 	const timespanElems = [];
 	for (let timespan of timespans) {

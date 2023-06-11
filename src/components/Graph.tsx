@@ -9,6 +9,7 @@ interface GraphProps {
 	min: string;
 	max: string;
 	data: string[][];
+	labels: string[];
 }
 
 const Graph: FC<GraphProps> = (props: GraphProps) => {
@@ -30,22 +31,10 @@ const Graph: FC<GraphProps> = (props: GraphProps) => {
 				min: props.min,
 				max: props.max,
 			},
-			// x: [
-			// 	// {
-			// 	// 	// type: "time",
-			// 	// },
-			// ],
 		},
-		// xAxes: {
-		// 	time: {
-		// 		displayFormat: { day: "MM/YY" },
-		// 		tooltipFormat: "DD/MM/YY",
-		// 		unit: "month",
-		// 	},
-		// },
 	};
 	const data: ChartData<"bar", string[][], string> = {
-		labels: ["label1", "label2", "label3"],
+		labels: props.labels,
 		datasets: [
 			{
 				data: props.data,
