@@ -1,16 +1,27 @@
-import React from "react";
+import React, { FC } from "react";
 
 import { VStack } from "@chakra-ui/react";
 
-import Timespan from "./Timespan";
+import TimespanSelector, { TimespanInt } from "./Timespan";
 
-export const timespans: Timespan[] = [new Timespan(0), new Timespan(1)];
+export interface TimespanMenuProps {
+	timespans: TimespanInt[];
+	setTimespans: React.Dispatch<React.SetStateAction<TimespanInt[]>>;
+}
 
-const TimespanMenu = () => {
-	const timespanElems = [];
-	for (let timespan of timespans) {
-		timespanElems.push(timespan.elem);
-	}
+const TimespanMenu: FC<TimespanMenuProps> = (props: TimespanMenuProps) => {
+	const timespanElems: React.JSX.Element[] = [
+		<TimespanSelector
+			id={0}
+			timespans={props.timespans}
+			setTimespans={props.setTimespans}
+		/>,
+		<TimespanSelector
+			id={1}
+			timespans={props.timespans}
+			setTimespans={props.setTimespans}
+		/>,
+	];
 
 	return (
 		<VStack
