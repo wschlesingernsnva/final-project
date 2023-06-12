@@ -52,7 +52,7 @@ const TimespanMenu: FC<TimespanMenuProps> = (props: TimespanMenuProps) => {
 				/>,
 			]);
 		}
-	});
+	}, [timespanSelectors, props.timespans, props.setTimespans]);
 
 	return (
 		<VStack
