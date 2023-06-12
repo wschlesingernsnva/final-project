@@ -1,6 +1,7 @@
 {
 	"name": "final-project",
 	"version": "0.1.0",
+	"homepage": "https://wschlesingernsnva.github.io/gantt-chart-maker",
 	"private": true,
 	"dependencies": {
 		"@chakra-ui/react": "^2.7.0",
