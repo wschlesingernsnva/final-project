@@ -2,4 +2,4 @@
 
 ## GitHub Pages site
 
-https://wschlesingernsnva.github.io/final-project/
+https://wschlesingernsnva.github.io/gantt-chart-maker/
