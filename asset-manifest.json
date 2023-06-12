@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/gantt-chart-maker/static/css/main.93a0497a.css",
-    "main.js": "/gantt-chart-maker/static/js/main.31bcb7b2.js",
-    "static/js/787.0fe84981.chunk.js": "/gantt-chart-maker/static/js/787.0fe84981.chunk.js",
+    "main.js": "/gantt-chart-maker/static/js/main.6eaf6f56.js",
+    "static/js/787.a2625e13.chunk.js": "/gantt-chart-maker/static/js/787.a2625e13.chunk.js",
     "index.html": "/gantt-chart-maker/index.html",
     "main.93a0497a.css.map": "/gantt-chart-maker/static/css/main.93a0497a.css.map",
-    "main.31bcb7b2.js.map": "/gantt-chart-maker/static/js/main.31bcb7b2.js.map",
-    "787.0fe84981.chunk.js.map": "/gantt-chart-maker/static/js/787.0fe84981.chunk.js.map"
+    "main.6eaf6f56.js.map": "/gantt-chart-maker/static/js/main.6eaf6f56.js.map",
+    "787.a2625e13.chunk.js.map": "/gantt-chart-maker/static/js/787.a2625e13.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.93a0497a.css",
-    "static/js/main.31bcb7b2.js"
+    "static/js/main.6eaf6f56.js"
   ]
 }
