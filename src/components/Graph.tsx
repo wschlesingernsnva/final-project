@@ -17,6 +17,7 @@ interface GraphProps {
 const Graph: FC<GraphProps> = (props: GraphProps) => {
 	const options = {
 		indexAxis: "y" as const,
+		maintainAspectRatio: false,
 		plugins: {
 			legend: {
 				display: false,
