@@ -7,31 +7,29 @@ import { DateTime } from "luxon";
 import TimespanMenu from "./components/TimespanMenu";
 import Graph from "./components/Graph";
 
-import { TimespanInt } from "./components/Timespan";
+import { Timespan } from "./components/TimespanSelector";
 
 function App() {
 	const dtNow: DateTime = DateTime.now();
 
-	const initStart: string = dtNow.toISO()!;
-	const initEnd: string = dtNow.plus({ years: 1 }).toISO()!;
+	// TEMP NOTE: need to not attempt to update graph when input is invalid
 
-	const [dateMin, setDateMin] = useState<string>(initStart);
-	const [dateMax, setDateMax] = useState<string>(initEnd);
-
-	const [data, setData] = useState<string[][]>([
-		[initStart, initStart],
-		[initStart, initStart],
+	const [timespans, setTimespans] = useState<Timespan[]>([
+		{ label: "", start: dtNow, end: dtNow },
+		{ label: "", start: dtNow, end: dtNow },
 	]);
+
+	const initMin: string = dtNow.toISO()!;
+	const initMax: string = dtNow.plus({ years: 1 }).toISO()!;
+
+	const [dateMin, setDateMin] = useState<string>(initMin);
+	const [dateMax, setDateMax] = useState<string>(initMax);
 
 	const [labels, setLabels] = useState<string[]>(["", ""]);
 
-	// TEMP NOTE: need to force startDate to be smaller than endDate
-
-	// TEMP NOTE: need to not attempt to update graph when input is invalid
-
-	const [timespans, setTimespans] = useState<TimespanInt[]>([
-		{ label: "", start: dtNow, end: dtNow },
-		{ label: "", start: dtNow, end: dtNow },
+	const [data, setData] = useState<string[][]>([
+		[initMin, initMin],
+		[initMin, initMin],
 	]);
 
 	useEffect(() => {

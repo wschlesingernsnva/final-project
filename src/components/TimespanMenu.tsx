@@ -2,15 +2,15 @@ import React, { FC } from "react";
 
 import { VStack } from "@chakra-ui/react";
 
-import TimespanSelector, { TimespanInt } from "./Timespan";
+import TimespanSelector, { Timespan } from "./TimespanSelector";
 
 export interface TimespanMenuProps {
-	timespans: TimespanInt[];
-	setTimespans: React.Dispatch<React.SetStateAction<TimespanInt[]>>;
+	timespans: Timespan[];
+	setTimespans: React.Dispatch<React.SetStateAction<Timespan[]>>;
 }
 
 const TimespanMenu: FC<TimespanMenuProps> = (props: TimespanMenuProps) => {
-	const timespanElems: React.JSX.Element[] = [
+	const timespanSelectors: React.JSX.Element[] = [
 		<TimespanSelector
 			id={0}
 			timespans={props.timespans}
@@ -32,7 +32,7 @@ const TimespanMenu: FC<TimespanMenuProps> = (props: TimespanMenuProps) => {
 			alignItems="flex-start"
 			justifyContent="flex-start"
 		>
-			{timespanElems}
+			{timespanSelectors}
 		</VStack>
 	);
 };

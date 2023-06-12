@@ -6,35 +6,17 @@ import { DateTime } from "luxon";
 
 import { MonthSelect, DaySelect, YearSelect } from "./DateInfoSelectors";
 
-// type DateCB = (value: number) => void;
-
-// interface DateCallbacks {
-// 	month: DateCB;
-// 	day: DateCB;
-// 	year: DateCB;
-// }
-
-// interface DateSelectorElemProps {
-// 	callbacks: DateCallbacks;
-// 	defaultDate: DateTime;
-// }
-
 interface DateSelectorProps {
 	getDate: () => DateTime;
 	setDate: (date: DateTime) => void;
 }
 
 const DateSelector: FC<DateSelectorProps> = (props: DateSelectorProps) => {
-	//let [date, setDate] = useState<DateTime>(props.defaultDate);
-
 	const [dayValue, setDayValue] = useState<number>(props.getDate().day);
 
 	const updateDay = (newDay: number) => {
 		setDayValue(newDay);
 		props.setDate(props.getDate().set({ day: newDay }));
-
-		//setDate(date.set({ day: newDay }));
-		//props.callbacks.day(date.day);
 	};
 
 	const [maxDayValue, setMaxDayValue] = useState<number>(
@@ -90,33 +72,5 @@ const DateSelector: FC<DateSelectorProps> = (props: DateSelectorProps) => {
 		</HStack>
 	);
 };
-
-// class DateSelector {
-// 	date: DateTime;
-// 	elem: ReactNode;
-// 	constructor() {
-// 		this.date = DateTime.now();
-
-// 		this.elem = (
-// 			<DateSelectorElem
-// 				callbacks={{
-// 					month: (month: number) => {
-// 						this.date = this.date.set({ month: month });
-// 						//updateGraph();
-// 					},
-// 					day: (day: number) => {
-// 						this.date = this.date.set({ day: day });
-// 						//updateGraph();
-// 					},
-// 					year: (year: number) => {
-// 						this.date = this.date.set({ year: year });
-// 						//updateGraph();
-// 					},
-// 				}}
-// 				defaultDate={this.date}
-// 			/>
-// 		);
-// 	}
-// }
 
 export default DateSelector;
