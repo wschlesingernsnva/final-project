@@ -53,7 +53,7 @@ const Graph: FC<GraphProps> = (props: GraphProps) => {
 			alignItems="flex-start"
 			justifyContent="flex-start"
 		>
-			<Bar options={options} data={data} />
+			<Bar className="graph" options={options} data={data} />
 		</Box>
 	);
 };
