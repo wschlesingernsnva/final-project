@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 
-import { VStack } from "@chakra-ui/react";
+import { Button, VStack } from "@chakra-ui/react";
 
 import TimespanSelector, { Timespan } from "./TimespanSelector";
+import { DateTime } from "luxon";
 
 export interface TimespanMenuProps {
 	timespans: Timespan[];
@@ -10,7 +11,9 @@ export interface TimespanMenuProps {
 }
 
 const TimespanMenu: FC<TimespanMenuProps> = (props: TimespanMenuProps) => {
-	const timespanSelectors: React.JSX.Element[] = [
+	const [timespanSelectors, setTimespanSelectors] = useState<
+		React.JSX.Element[]
+	>([
 		<TimespanSelector
 			id={0}
 			timespans={props.timespans}
@@ -21,7 +24,35 @@ const TimespanMenu: FC<TimespanMenuProps> = (props: TimespanMenuProps) => {
 			timespans={props.timespans}
 			setTimespans={props.setTimespans}
 		/>,
-	];
+	]);
+
+	const buttonCallback = () => {
+		props.setTimespans([
+			...props.timespans,
+			{
+				label: "",
+				start: DateTime.now(),
+				end: DateTime.now(),
+			},
+		]);
+	};
+
+	useEffect(() => {
+		for (
+			let selectorCount: number = timespanSelectors.length;
+			selectorCount < props.timespans.length;
+			selectorCount++
+		) {
+			setTimespanSelectors([
+				...timespanSelectors,
+				<TimespanSelector
+					id={selectorCount}
+					timespans={props.timespans}
+					setTimespans={props.setTimespans}
+				/>,
+			]);
+		}
+	});
 
 	return (
 		<VStack
@@ -33,6 +64,7 @@ const TimespanMenu: FC<TimespanMenuProps> = (props: TimespanMenuProps) => {
 			justifyContent="flex-start"
 		>
 			{timespanSelectors}
+			<Button onClick={buttonCallback}>+</Button>
 		</VStack>
 	);
 };
